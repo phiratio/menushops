@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "Interactive menu for a shop",
-  "scripts": {
-  },
   "devDependencies": {
-  "concurrently": "3.5.1",
-  "react-scripts": "^1.1.4"
-},
+    "concurrently": "3.5.1",
+    "react-scripts": "^1.1.4"
+  },
   "dependencies": {
     "autoprefixer-stylus": "0.14.0",
     "firebase": "^4.10.1",
@@ -20,6 +18,10 @@
     "react-transition-group": "^2.2.1",
     "serve": "^6.5.8",
     "stylus": "0.54.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "watch": "concurrently --names \"webpack, stylus\" --prefix name \"npm run start\"npm run styles:watch\""
   },
   "repository": {
     "type": "git",
