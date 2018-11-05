@@ -3,6 +3,7 @@ import Header from "./Header";
 import Inventory from "./Inventory";
 import Order from "./Order";
 import Fish from "./Fish";
+import base from "../base";
 import sampleFishes from "../sample-fishes";
 
 class App extends React.Component {
@@ -10,6 +11,13 @@ class App extends React.Component {
     fishes: {},
     order: {}
   };
+  componentDidMount() {
+    const { params } = this.props.match;
+    this.ref = base.syncState(`${params.storeID}/fishes`, {
+      context: this,
+      state: 'fishes'
+    });
+  }
   addFish = fish => {
     // hmm how can we add fishy fish (javascripty way)
     // this.state.fishes.push(fish)
@@ -56,9 +64,7 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order
-          fishes={this.state.fishes}
-          order={this.state.order}/>
+        <Order fishes={this.state.fishes} order={this.state.order} />
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
