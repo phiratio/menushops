@@ -29,22 +29,26 @@ class App extends React.Component {
     this.setState({ fishes: sampleFishes });
   };
   addToOrder = key => {
+    console.group();
     // 1. take a copy of state
+    console.info(`addToOrder event raised from Fish component`);
+    console.info(`Old order state > ${JSON.stringify(this.state.order)}`);
     const order = { ...this.state.order };
     // 2. either add to the order, or update the number of the order
     order[key] = order[key] + 1 || 1;
     // 3. call setState to update our state object
     this.setState({ order });
+    console.groupEnd();
   };
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline={"Fresh Seafood Market"} />
+          <Header tagline={"Freshy Fishy"} />
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => (
               <Fish
-                key={key}
+                key={key} //react handles it faster with unique key
                 index={key}
                 details={this.state.fishes[key]}
                 addToOrder={this.addToOrder}
