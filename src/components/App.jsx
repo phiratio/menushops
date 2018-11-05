@@ -18,6 +18,10 @@ class App extends React.Component {
       state: 'fishes'
     });
   }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   addFish = fish => {
     // hmm how can we add fishy fish (javascripty way)
     // this.state.fishes.push(fish)
