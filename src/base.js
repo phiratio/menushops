@@ -2,7 +2,9 @@ import Rebase from "re-base";
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
-//PRIVATE INFO HERE
+  apiKey: "AIzaSyDs6Ttgl7-hTJpSAcXrtNI1kVqBzsF4qQo",
+  authDomain: "menushops-e4955.firebaseapp.com",
+  databaseURL: "https://menushops-e4955.firebaseio.com"
 });
 
 // Rebase -> sync a firebase endpoint with a property on your component's state - SIICK
