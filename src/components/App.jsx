@@ -15,10 +15,10 @@ class App extends React.Component {
     const { params } = this.props.match;
     // first reinstate our localStorage
     const localStorageRef = localStorage.getItem(params.storeID);
-    if(localStorageRef) {
+    if (localStorageRef) {
       this.setState({
         order: JSON.parse(localStorageRef)
-      })
+      });
     }
     this.ref = base.syncState(`${params.storeID}/fishes`, {
       context: this,
@@ -31,7 +31,10 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    localStorage.setItem(this.props.match.params.storeID,JSON.stringify(this.state.order));
+    localStorage.setItem(
+      this.props.match.params.storeID,
+      JSON.stringify(this.state.order)
+    );
   }
   addFish = fish => {
     // hmm how can we add fishy fish (javascripty way)
@@ -51,11 +54,19 @@ class App extends React.Component {
 
   updateFish = (key, updatedFish) => {
     // 1. Take a copy of the current state
-    const fishes = {...this.state.fishes};
+    const fishes = { ...this.state.fishes };
     // 2. Update that state
     fishes[key] = updatedFish;
     // 3. Set that to state
-    this.setState({fishes});
+    this.setState({ fishes });
+  };
+  deleteFish = key => {
+    // 1. Take a copy of the current state
+    const fishes = { ...this.state.fishes };
+    // 2. Update the state
+    fishes[key] = null; // =null is firebase specific
+    // 3. Set that to state
+    this.setState({ fishes });
   };
   loadSampleFishes = () => {
     this.setState({ fishes: sampleFishes });
